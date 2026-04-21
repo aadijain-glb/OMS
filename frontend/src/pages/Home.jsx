@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import useReveal from "../hooks/useReveal";
-import { Link } from "react-router-dom";
-import api from "../api";
 import productsData from "../data/product";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
