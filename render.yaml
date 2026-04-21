@@ -1,0 +1,38 @@
+services:
+  # ── Backend Web Service ──────────────────────────────────────────────
+  - type: web
+    name: oms-backend
+    runtime: node
+    rootDir: Backend
+    buildCommand: npm install
+    startCommand: node index.js
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: MONGO_URI
+        sync: false          # Set this in the Render dashboard
+      - key: JWT_SECRET
+        sync: false          # Set this in the Render dashboard
+      - key: STRIPE_SECRET_KEY
+        sync: false          # Set this in the Render dashboard
+      - key: CLIENT_URL
+        sync: false          # Set to your frontend Render URL after deploying
+
+  # ── Frontend Static Site ─────────────────────────────────────────────
+  - type: web
+    name: oms-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    plan: free
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false          # Set to your backend Render URL after deploying
