@@ -38,7 +38,7 @@ const Home = () => {
           </div>
 
           <img
-            src="/images/making.jpg"
+            src="/images/placeholder.jpg"
             alt="Hero"
             className="h-[280px] md:h-[380px] lg:h-[480px] w-full lg:w-auto object-cover rounded-lg"
           />
